@@ -1,4 +1,5 @@
 # general-assembly-shields
+[![other](http://ga.bling.phillbaker.com/images/shield_imagined_ga_other.png)](https://generalassemb.ly/)
 
 A collection of sheilds with which to adorn valiently created and bravely
 executed repositories of code! (Inspired by [https://generalassemb.ly](General Assembly).)
