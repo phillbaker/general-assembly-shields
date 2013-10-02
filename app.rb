@@ -35,7 +35,7 @@ class App < Sinatra::Base
 
   helpers do
     def img_url(course)
-      "//ga.bling.phillbaker.com/images/shield_imagined_ga_#{course}.png"
+      "http://ga.bling.phillbaker.com/images/shield_imagined_ga_#{course}.png"
     end
 
     def html(course=nil)
