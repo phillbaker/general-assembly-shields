@@ -5,6 +5,21 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 
 class App < Sinatra::Base
+  DEFAULT_COURSE = :other
+  COURSE_URLS = {
+    :wdi => 'https://generalassemb.ly/education/web-development-immersive',
+    :fewd => 'https://generalassemb.ly/education/front-end-web-development',
+    :dm => 'https://generalassemb.ly/education/digital-marketing',
+    :bewd => 'https://generalassemb.ly/education/back-end-web-development',
+    :uxd => 'https://generalassemb.ly/education/user-experience-design',
+    :ds => 'https://generalassemb.ly/education/data-science',
+    :uxdi => 'https://generalassemb.ly/education/user-experience-design-immersive',
+    :csf => 'https://generalassemb.ly/education/computer-science-fundamentals',
+    :bft => 'https://generalassemb.ly/education/business-fundamentals-tactics',
+    :pm => 'https://generalassemb.ly/education/product-management',
+    :other => 'https://generalassemb.ly'
+  }
+
   set :host, 'ga.bling.phillbaker.com'
   set :root, File.dirname(__FILE__)
   set :views, File.join('app', 'templates')
@@ -19,13 +34,24 @@ class App < Sinatra::Base
   end
 
   helpers do
-    def html
-      %q{<a href=""><img src="//ga.bling.phillbaker.com/images/shield_imagined_ga_COURSE.png" alt="" /></a>}
+    def img_url(course)
+      "//ga.bling.phillbaker.com/images/shield_imagined_ga_#{course}.png"
     end
 
-    def markdown; end
+    def html(course=nil)
+      course ||= DEFAULT_COURSE
+      %Q{<a href="#{COURSE_URLS[course]}"><img src="#{img_url(course)}" alt="#{course}" /></a>}
+    end
 
-    def rails_erb; end
+    def markdown(course=nil)
+      course ||= DEFAULT_COURSE
+      "[![#{course}](#{img_url(course)})](#{COURSE_URLS[course]})"
+    end
+
+    def rails_erb(course)
+      course ||= DEFAULT_COURSE
+      "<%= link_to '#{COURSE_URLS[course]}' { %><%= image_tag '#{img_url(course)}', '#{course}' %><% } %>"
+    end
   end
 
   not_found do
@@ -34,7 +60,7 @@ class App < Sinatra::Base
 
   get '/' do
     erb :index, :locals => {
-      :courses => [:bewd, :bft, :csf, :ds, :fewd, :pm, :uxd, :uxdi, :wdi]
+      :courses => [:bewd, :bft, :csf, :ds, :fewd, :pm, :uxd, :uxdi, :wdi, DEFAULT_COURSE],
     }
   end
 

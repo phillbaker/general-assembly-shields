@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>General Assembly Shields</title>
+    <title>Bling for General Assembly</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -11,6 +11,33 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <style>
+      input,
+      textarea {
+        margin: 0;
+        font-size: 100%;
+        vertical-align: middle;
+      }
+
+      input {
+        *overflow: visible;
+        line-height: normal;
+      }
+
+      input::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+      }
+
+      p.copy input {
+        margin-right: 8px;
+      }
+
+      .copy:hover:after {
+        font-weight: bolder;
+        content: ' copy me!';
+      }
+    </style>
   </head>
   <body>
     <a href="https://github.com/phillbaker/general-assembly-shields"><img style="position: fixed;
@@ -20,7 +47,7 @@
 
     <div class="wrapper">
       <header>
-        <h1>General Assembly Shields</h1>
+        <h1>Imagined at General Assembly!</h1>
         <p>Flair for projects inspired by <a href="https://generalassemb.ly/">General Assemb.ly</a></p>
         <p class="view"><a href="https://github.com/phillbaker/general-assembly-shields">View the Project on GitHub <small>phillbaker/general-assembly-shields</small></a></p>
         <!-- <ul>
@@ -40,23 +67,14 @@
         </ul>
 
         <% courses.each do |course| %>
-          <h2><%= course.to_s.upcase %></h2>
+          <h2><%= course.to_s.upcase %> <a id="<%= course %>" href="#<%= course %>">&infin;</a></h2>
           <h3>HTML</h3>
-          <p><input type="text" value=""></p>
+          <p class="copy"><input type="text" onClick="this.select()" value="<%= ERB::Util.html_escape(html(course)) %>"> </p>
           <h3>Markdown</h3>
+          <p class="copy"><input type="text" onClick="this.select()" value="<%= ERB::Util.html_escape(markdown(course)) %>"></p>
           <h3>Rails ERB</h3>
+          <p class="copy"><input type="text" onClick="this.select()" value="<%= ERB::Util.html_escape(rails_erb(course)) %>"></p>
         <% end %>
-
-        <h3>HTML</h3>
-        <a href="https://codeclimate.com/github/diaspora/diaspora"><img src="https://codeclimate.com/github/diaspora/diaspora.png" /></a>
-        <h3>Markdown</h3>
-        [![Code Climate](https://codeclimate.com/github/diaspora/diaspora.png)](https://codeclimate.com/github/diaspora/diaspora)
-        <h3>ERB</h3>
-        <h3>RDOC</h3>
-        <p>
-          <input style="width: 400px; margin-right: 7px" type="text" value="{&lt;img src=&quot;https:&#47;&#47;codeclimate.com&#47;github&#47;diaspora&#47;diaspora.png&quot; &#47;&gt;}[https:&#47;&#47;codeclimate.com&#47;github&#47;diaspora&#47;diaspora]" />
-        </p>
-
 
       </section>
       <footer>
