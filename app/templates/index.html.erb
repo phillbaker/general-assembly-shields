@@ -67,13 +67,25 @@
         </ul>
 
         <% courses.each do |course| %>
-          <h2><%= course.to_s.upcase %> <a id="<%= course %>" href="#<%= course %>">&infin;</a></h2>
+          <h2>
+            <%= course.to_s.upcase %>
+            <a id="<%= course %>" href="#<%= course %>">&infin;</a>
+          </h2>
+          <p><img src="<%= img_url(course) %>" alt="<%= course %>"></p>
+
           <h3>HTML</h3>
           <p class="copy"><input type="text" onClick="this.select()" value="<%= ERB::Util.html_escape(html(course)) %>"> </p>
+
           <h3>Markdown</h3>
           <p class="copy"><input type="text" onClick="this.select()" value="<%= ERB::Util.html_escape(markdown(course)) %>"></p>
+
+          <h3>RDoc</h3>
+          <p class="copy"><input type="text" onClick="this.select()" value="<%= ERB::Util.html_escape(rdoc(course)) %>"></p>
+
           <h3>Rails ERB</h3>
           <p class="copy"><input type="text" onClick="this.select()" value="<%= ERB::Util.html_escape(rails_erb(course)) %>"></p>
+
+          <br><br>
         <% end %>
 
       </section>

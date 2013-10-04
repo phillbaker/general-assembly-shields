@@ -48,7 +48,12 @@ class App < Sinatra::Base
       "[![#{course}](#{img_url(course)})](#{COURSE_URLS[course]})"
     end
 
-    def rails_erb(course)
+    def rdoc(course=nil)
+      course ||= DEFAULT_COURSE
+      %Q{{<img src="#{img_url(course)}" />}[#{COURSE_URLS[course]}]}
+    end
+
+    def rails_erb(course=nil)
       course ||= DEFAULT_COURSE
       "<%= link_to '#{COURSE_URLS[course]}' { %><%= image_tag '#{img_url(course)}', '#{course}' %><% } %>"
     end
